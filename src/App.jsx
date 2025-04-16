@@ -20,13 +20,13 @@ export default function SolarSystem() {
   }, [selectedPlanet])
 
   const fetchComments = async () => {
-    const res = await axios.get(`http://localhost:8000/comments?planet=${selectedPlanet.name}`)
+    const res = await axios.get(`https://htrae.onrender.com/comments?planet=${selectedPlanet.name}`)
     setComments(res.data)
   }
 
   const handleSubmit = async () => {
     if (!newComment.trim()) return
-    await axios.post('http://localhost:8000/comments', {
+    await axios.post('https://htrae.onrender.com/comments', {
       planet: selectedPlanet.name,
       content: newComment,
       author: nickname,
@@ -36,12 +36,12 @@ export default function SolarSystem() {
   }
 
   const handleDelete = async (id) => {
-    await axios.delete(`http://localhost:8000/comments/${id}`)
+    await axios.delete(`https://htrae.onrender.com/comments/${id}`)
     fetchComments()
   }
 
   const handleUpdate = async (id) => {
-    await axios.put(`http://localhost:8000/comments/${id}`, {
+    await axios.put(`https://htrae.onrender.com/comments/${id}`, {
       content: editingContent,
     })    
     setEditingId(null)
